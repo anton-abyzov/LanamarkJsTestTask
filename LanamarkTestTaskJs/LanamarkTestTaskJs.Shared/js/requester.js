@@ -11,7 +11,6 @@
 
         function process(lookupItem) {
             var values = lookupItem.split(',');
-            debugger;
             var options = {
                 url: 'https://support.lenovo.com/services/by/be/SystemXWarrantyLookup/QueryWarrantyStatus',
                 type: 'POST',
@@ -53,9 +52,7 @@
         }
 
         function sleep(delay) {
-            debugger;
             var start = parseInt(new Date().getTime());
-            
             while (
                 new Date().getTime() < (start + parseInt(delay))
                 );
