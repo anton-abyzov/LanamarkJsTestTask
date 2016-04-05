@@ -2,24 +2,68 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>LanamarkTestTaskJs.Windows</title>
+    <title>Lenovo support lookup</title>
 
     <!-- WinJS references -->
-    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+    <link href="//Microsoft.WinJS.2.0/css/ui-light.css" rel="stylesheet" />
     <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+
+    <script src="Scripts/jquery-2.2.2.js"></script>
+    <script src="Scripts/winjscontrib/winjscontrib.core.js"></script>
 
     <!-- LanamarkTestTaskJs references -->
     <link href="/css/default.css" rel="stylesheet" />
     <script src="/js/data.js"></script>
     <script src="/js/navigator.js"></script>
     <script src="/js/default.js"></script>
+    <script src="/js/requester.js"></script>
 </head>
 <body>
-    <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/hub/hub.html'}"></div>
-    <!-- <div id="appbar" data-win-control="WinJS.UI.AppBar">
-        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'cmd', label:'Command', icon:'placeholder'}" type="button"></button>
-    </div> -->
+    <h1>Select a csv file or apply custom serial number search</h1>
+    <table>
+        <tr>
+            <td>
+                <label>Select a csv file</label>
+            </td>
+            <td><input id="uploadCsv" type="file" title="upload" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,text/comma-separated-values, text/csv, application/csv"/></td>
+        </tr>
+        <tr>
+            <td>
+                <label>Or enter serial number manually (format is &lt;sn&gt;[,&lt;type&gt;][;...n ]) </label>
+            </td>
+            <td>
+                <input type="text" id="manualInput" value="0"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Enter the pause (in seconds) between calls</label>
+            </td>
+            <td>
+                <input type="number" id="requestPause" value="0" />
+            </td>
+        </tr>
+    </table>
+
+    <div id="mediumListIconTextTemplate" data-win-control="WinJS.Binding.Template">
+        <div style="width: 400px; height: 230px; padding: 5px; display: -ms-grid;">
+            <div style="margin: 5px; -ms-grid-column: 2">
+
+                <!-- Displays the "title" field. -->
+                <h4 data-win-bind="innerText: title"></h4>
+
+                <!-- Displays the "text" field. -->
+                <h6 data-win-bind="innerText: text"></h6>
+            </div>
+        </div>
+    </div>
+
+    <div id="basicListView" data-win-control="WinJS.UI.ListView"
+         data-win-options="{
+    itemTemplate: select('#mediumListIconTextTemplate'),
+    layout : {type: WinJS.UI.GridLayout}}">
+    </div>
 
 </body>
 </html>
