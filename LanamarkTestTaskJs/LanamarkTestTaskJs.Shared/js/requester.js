@@ -4,10 +4,14 @@
     window.processLookups = function (serialNumbers) {
         if (!Array.isArray(serialNumbers) || serialNumbers.length === 0)
             alert("Incorrect parameter: should be not empty array");
+        
+        var listView = $('#basicListView')[0].winControl;
+        listView.itemDataSource = null;
+        Lookups.data = [];
 
-        function process(item) {
-            var values = item.split(',');
-
+        function process(lookupItem) {
+            var values = lookupItem.split(',');
+            debugger;
             var options = {
                 url: 'https://support.lenovo.com/services/by/be/SystemXWarrantyLookup/QueryWarrantyStatus',
                 type: 'POST',
@@ -31,11 +35,11 @@
 
             function output(value) {
                 var listView = $('#basicListView')[0].winControl;
-                Lookups.data.push({ title: item, text: value });
+                Lookups.data.push({ title: lookupItem, text: value });
                 var itemList = new WinJS.Binding.List(Lookups.data);
                 listView.itemDataSource = itemList.dataSource;
                 listView.selectionMode = WinJS.UI.SelectionMode.single;
-                listView.tapBehavior = WinJS.UI.TapBehavior.none;
+                listView.tapBehavior = WinJS.UI.TapBehavior.toggleSelect;
             }
 
             WinJS.xhr(options).done(
@@ -49,8 +53,12 @@
         }
 
         function sleep(delay) {
-            var start = new Date().getTime();
-            while (new Date().getTime() < start + delay);
+            debugger;
+            var start = parseInt(new Date().getTime());
+            
+            while (
+                new Date().getTime() < (start + parseInt(delay))
+                );
         }
 
         var promise = new WinJS.Promise(function(){});

@@ -6,7 +6,6 @@
     var activation = Windows.ApplicationModel.Activation;
     var app = WinJS.Application;
     var nav = WinJS.Navigation;
-    var sched = WinJS.Utilities.Scheduler;
     var ui = WinJS.UI;
 
     window.alert = function (message) {
@@ -63,9 +62,15 @@
                 }
             });
 
+            $('#manualApply').click(function (e) {
+                var input = $('#manualInput')[0].value.split(';');
+                if (window.processLookups != undefined)
+                    window.processLookups(input);
+            });
+
             window.requestPause = 0;
             $('#requestPause').on('change', function (e) {
-                window.requestPause = $(e.target)[0].value * 1000;
+                window.requestPause = $(e.target)[0].value;
             });
 
             hookUpBackButtonGlobalEventHandlers();

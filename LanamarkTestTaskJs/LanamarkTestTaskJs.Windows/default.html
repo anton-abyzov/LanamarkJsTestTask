@@ -15,7 +15,6 @@
     <!-- LanamarkTestTaskJs references -->
     <link href="/css/default.css" rel="stylesheet" />
     <script src="/js/data.js"></script>
-    <script src="/js/navigator.js"></script>
     <script src="/js/default.js"></script>
     <script src="/js/requester.js"></script>
 </head>
@@ -26,19 +25,22 @@
             <td>
                 <label>Select a csv file</label>
             </td>
-            <td><input id="uploadCsv" type="file" title="upload" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,text/comma-separated-values, text/csv, application/csv"/></td>
+            <td><input id="uploadCsv" style="margin-left: 0; margin-bottom: 0;width:280px" type="file" title="upload" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel,text/comma-separated-values, text/csv, application/csv"/></td>
         </tr>
         <tr>
             <td>
-                <label>Or enter serial number manually (format is &lt;sn&gt;[,&lt;type&gt;][;...n ]) </label>
+                <label>Or enter serial number manually (format is &lt;sn&gt;[,&lt;type&gt;][;...n ]) </label> 
             </td>
             <td>
-                <input type="text" id="manualInput" value="0"/>
+                <input type="text" id="manualInput" value="06CR836,7870" />
+            </td>
+            <td>
+                <input type="button" id="manualApply" value="Apply"/>
             </td>
         </tr>
         <tr>
             <td>
-                <label>Enter the pause (in seconds) between calls</label>
+                <label>Enter the pause (in milliseconds) between calls (e.g. 100)</label>
             </td>
             <td>
                 <input type="number" id="requestPause" value="0" />
